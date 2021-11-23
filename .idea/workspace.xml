@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="75b46716-42dc-48ac-bc72-9395f28d6ce4" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[20598eb30409]" />
+  <component name="ProjectId" id="20YPVsTqAsUR5DDIIO6HX0KtXVZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/fonts" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\assets\fonts" />
+      <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\assets\fonts" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75b46716-42dc-48ac-bc72-9395f28d6ce4" name="Default Changelist" comment="" />
+      <created>1636218574378</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636218574378</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1306" height="473" key="GridCell.Tab.0.bottom" timestamp="1637516174179">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="473" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1637516174179" />
+    <state width="1306" height="473" key="GridCell.Tab.0.center" timestamp="1637516174178">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="473" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1637516174178" />
+    <state width="1306" height="473" key="GridCell.Tab.0.left" timestamp="1637516174178">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="473" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1637516174178" />
+    <state width="1306" height="473" key="GridCell.Tab.0.right" timestamp="1637516174179">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="473" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1637516174179" />
+  </component>
+</project>

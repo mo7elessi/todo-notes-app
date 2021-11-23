@@ -1,0 +1,380 @@
+import 'dart:async';
+import 'package:conditional_builder/conditional_builder.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
+import 'package:todo_app/madules/add_edit/add_edit.dart';
+import 'package:todo_app/madules/notes/note_details.dart';
+import 'package:todo_app/madules/tasks/task_details.dart';
+import 'package:todo_app/shared/cubit/cubit.dart';
+import 'package:todo_app/shared/styles/colors.dart';
+
+Widget textField(
+    {required TextEditingController controller,
+    required TextInputType keyboard,
+    required Function validator,
+    required String hintText,
+    bool isClick = true,
+    IconData? suffixIcon,
+    required context,
+    required Function onTap,
+    Function? onSubmit,
+    int min = 1,
+    int max = 1,
+    bool? description = false}) {
+  return Container(
+    height: description == true ? 300.0 : 50.0,
+    width: 600.0,
+    child: TextFormField(
+      maxLines: max,
+      minLines: min,
+      controller: controller,
+      keyboardType: keyboard,
+      style: Theme.of(context).textTheme.headline3,
+      textAlignVertical: TextAlignVertical.top,
+      cursorColor: primaryColor,
+      decoration:InputDecoration(
+          icon: Icon(
+          suffixIcon,
+          color:primaryColor,
+        ),
+          hintText: hintText,
+        hintStyle: Theme.of(context).textTheme.headline3,
+      ),
+      onTap: () => onTap(),
+    ),
+  );
+}
+
+Widget button({
+  bool isUppercase = true,
+  double radius = 5.0,
+  required Function function,
+  required String text,
+  required bool done,
+}) {
+  return TextButton(
+    onPressed: () => function(),
+    child: Text(isUppercase ? text.toUpperCase() : text,
+        style: const TextStyle(
+            color: primaryColor,
+            fontSize: 14.0,
+            fontFamily: 'Cairo',
+            fontWeight: FontWeight.bold)),
+  );
+}
+
+Widget taskItem(context, Map model) {
+  String date = model['date'];
+  //DateFormat.yMMMd().format(date);
+  //var date = DateTime.tryParse(model['date']);
+  return  GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => TaskDetails(model),
+            ));
+      },
+      child: Card(
+        elevation: 0.5,
+        child: Slidable(
+          actionPane: const SlidableDrawerActionPane(),
+          actions: [
+           /* itemAction(
+                color: primaryColor,
+                context: context,
+                icon: Icons.edit,
+                function: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return AddEditTaskOrNote(0, 'edit', model: model);
+                    },
+                  ));
+                }),*/
+            itemAction(
+               color: Colors.red,
+                context: context,
+                icon: Icons.delete,
+                function: () {
+                  return TaskCubit.get(context)
+                      .deleteTask(id: model['id'], context: context);
+                }),
+          ],
+          secondaryActions: [
+          /*  if (model['status'] == 'archive')
+              itemAction(
+                  color: primaryColor,
+                  context: context,
+                  icon: Icons.assignment_return,
+                  function: () {
+                    return TaskCubit.get(context).updateStatusTask(
+                        status: 'new', id: model['id'], context: context);
+                  }),
+            if (model['status'] == 'new')
+              itemAction(
+                  color: primaryColor,
+                  context: context,
+                  icon: Icons.archive,
+                  function: () {
+                    return TaskCubit.get(context).updateStatusTask(
+                        status: 'archive', id: model['id'], context: context);
+                  }),*/
+          ],
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            ),
+            width: double.infinity,
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                model['status'] == 'new' || model['status'] == 'archive'
+                    ? RoundCheckBox(
+                  size: 32,
+                        checkedColor: primaryColor,
+                        borderColor: secondaryColor,
+                        isChecked: model['status'] == "done" ? true : false,
+                        animationDuration: const Duration(
+                          microseconds: 3000,
+                        ),
+                        onTap: (selected) {
+                          if (model['status'] == "done") {
+                            return false;
+                          } else {
+                            Timer(const Duration(milliseconds: 100), () {
+                              if (model['status'] == 'new') {
+                                TaskCubit.get(context).updateStatusTask(
+                                    status: 'done',
+                                    id: model['id'],
+                                    context: context);
+                              }
+                              if (model['status'] == 'archive') {
+                                TaskCubit.get(context).updateStatusTask(
+                                    status: 'done',
+                                    id: model['id'],
+                                    context: context);
+                              }
+                              if (model['status'] == 'done') {
+                                TaskCubit.get(context).updateStatusTask(
+                                    status: 'new',
+                                    id: model['id'],
+                                    context: context);
+                              }
+                            });
+                          }
+                        })
+                    : const Icon(
+                        Icons.check,
+                        color: primaryColor,
+                      ),
+                const SizedBox(
+                  width: 20.0,
+                ),
+                SizedBox(
+                  width: 280.0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${model['title']}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: model['status'] == 'new' ||
+                                  model['status'] == 'archive'
+                              ? Theme.of(context).textTheme.bodyText1
+                              : Theme.of(context).textTheme.headline2),
+                      const SizedBox(height: 5.0),
+                      Row(
+                        children: [
+                          Text('$date, ${model['time']}',
+                              style: Theme.of(context).textTheme.subtitle1),
+                          const Spacer(),
+                          if (date == DateFormat.yMMMd().format(DateTime.now()))
+                            const Text(
+                              'اليوم',
+                              style: TextStyle(color: primaryColor),
+                            )
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+}
+
+Widget taskBuilder({
+  required List<Map> tasks,
+  required int page,
+}) {
+  return ConditionalBuilder(
+      condition: tasks.isNotEmpty,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return taskItem(context, tasks[index]);
+            },
+            separatorBuilder: (context, index) => const SizedBox(
+            //  height: 5.0,
+            ),
+            itemCount: tasks.length,
+          ),
+        );
+      },
+      fallback: (context) {
+        String message = "";
+        if (page == 0) message = "لا يوجد مهام جديدة";
+        if (page == 1) message = "لا يوجد مهام مكتملة";
+        if (page == 2) message = "لا يوجد مهام مؤرشفة";
+        return Center(
+          child: Text(message, style: Theme.of(context).textTheme.bodyText1),
+        );
+      });
+}
+
+void toastMessage(
+    {required String message, required Color color, required context}) {
+
+  Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: color,
+      textColor: Colors.white,
+      fontSize: 16.0);
+}
+
+Widget noteItem(context, Map model) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NoteDetails(model)));
+    },
+    child: Card(
+      elevation: 0.5,
+      child: Slidable(
+        actionPane: const SlidableDrawerActionPane(),
+        actions: [
+          Column(
+            children: [
+              Expanded(
+                child: itemAction(
+                    color: primaryColor,
+                    context: context,
+                    icon: Icons.edit,
+                    function: () {
+                      return Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return AddEditTaskOrNote(1, 'edit', model: model);
+                        },
+                      ));
+                    }),
+              ),
+              Expanded(
+                child: itemAction(
+                    color: Colors.red,
+                    context: context,
+                    icon: Icons.delete,
+                    function: () {
+                      return TaskCubit.get(context)
+                          .deleteNote(id: model['id'], context: context);
+                    }),
+              ),
+            ],
+          ),
+        ],
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: 330.0,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('${model['title']}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.bodyText1),
+                        const SizedBox(height: 4.0),
+                        Text('${model['description']}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.headline6),
+                        const SizedBox(height: 4.0),
+                        Text(' تاريخ الإضافة ${model['date']}',
+                            style: Theme.of(context).textTheme.subtitle1),
+                        const SizedBox(height: 2.0),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget noteBuilder({
+  required List<Map> notes,
+}) {
+  return ConditionalBuilder(
+      condition: notes.isNotEmpty,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.separated(
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return noteItem(context, notes[index]);
+            },
+            separatorBuilder: (context, index) => const SizedBox(
+             // height: 5.0,
+            ),
+            itemCount: notes.length,
+          ),
+        );
+      },
+      fallback: (context) {
+        return Center(
+          child: Text('لا يوجد ملاحظات حاليا',
+              style: Theme.of(context).textTheme.bodyText1),
+        );
+      });
+}
+
+Widget itemAction(
+    {required context,
+    required color,
+    required IconData icon,
+    required Function function}) {
+  return IconSlideAction(
+    color: color,
+      iconWidget: Icon(icon, size: 28.0, color: Colors.white),
+      onTap: () => function());
+}

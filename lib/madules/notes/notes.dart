@@ -20,7 +20,7 @@ class Notes extends StatelessWidget {
             automaticallyImplyLeading: false,
             title: Text(
               'ملاحظاتي',
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.headline4,
             ),
             actions: [
               IconButton(

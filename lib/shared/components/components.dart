@@ -25,7 +25,7 @@ Widget textField(
     int min = 1,
     int max = 1,
     bool? description = false}) {
-  return Container(
+  return SizedBox(
     height: description == true ? 300.0 : 50.0,
     width: 600.0,
     child: TextFormField(
@@ -33,7 +33,7 @@ Widget textField(
       minLines: min,
       controller: controller,
       keyboardType: keyboard,
-      style: Theme.of(context).textTheme.headline3,
+      style: Theme.of(context).textTheme.headline6,
       textAlignVertical: TextAlignVertical.top,
       cursorColor: primaryColor,
       decoration:InputDecoration(
@@ -42,13 +42,42 @@ Widget textField(
           color:primaryColor,
         ),
           hintText: hintText,
-        hintStyle: Theme.of(context).textTheme.headline3,
       ),
       onTap: () => onTap(),
     ),
   );
 }
-
+Widget textFieldNoIcon(
+    {required TextEditingController controller,
+      required TextInputType keyboard,
+      required Function validator,
+      required String hintText,
+      bool isClick = true,
+      IconData? suffixIcon,
+      required context,
+      required Function onTap,
+      Function? onSubmit,
+      int min = 1,
+      int max = 1,
+      bool? description = false}) {
+  return SizedBox(
+    height: 1000,
+    width: 600.0,
+    child: TextFormField(
+      maxLines: max,
+      minLines: min,
+      controller: controller,
+      keyboardType: keyboard,
+      style: Theme.of(context).textTheme.bodyText1,
+      textAlignVertical: TextAlignVertical.top,
+      cursorColor: primaryColor,
+      decoration:InputDecoration(
+        hintText: hintText,
+      ),
+      onTap: () => onTap(),
+    ),
+  );
+}
 Widget button({
   bool isUppercase = true,
   double radius = 5.0,
@@ -56,21 +85,22 @@ Widget button({
   required String text,
   required bool done,
 }) {
-  return TextButton(
-    onPressed: () => function(),
-    child: Text(isUppercase ? text.toUpperCase() : text,
-        style: const TextStyle(
-            color: primaryColor,
-            fontSize: 14.0,
-            fontFamily: 'Cairo',
-            fontWeight: FontWeight.bold)),
+  return Container(
+    width: double.infinity,
+    child: TextButton(
+      onPressed: () => function(),
+      child: Text(isUppercase ? text.toUpperCase() : text,
+          style: const TextStyle(
+              color: primaryColor,
+              fontSize: 14.0,
+              fontFamily: 'Cairo',
+              fontWeight: FontWeight.bold)),
+    ),
   );
 }
 
 Widget taskItem(context, Map model) {
   String date = model['date'];
-  //DateFormat.yMMMd().format(date);
-  //var date = DateTime.tryParse(model['date']);
   return  GestureDetector(
       onTap: () {
         Navigator.push(
@@ -84,48 +114,22 @@ Widget taskItem(context, Map model) {
         child: Slidable(
           actionPane: const SlidableDrawerActionPane(),
           actions: [
-           /* itemAction(
-                color: primaryColor,
-                context: context,
-                icon: Icons.edit,
-                function: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return AddEditTaskOrNote(0, 'edit', model: model);
-                    },
-                  ));
-                }),*/
-            itemAction(
-               color: Colors.red,
-                context: context,
-                icon: Icons.delete,
-                function: () {
-                  return TaskCubit.get(context)
-                      .deleteTask(id: model['id'], context: context);
-                }),
-          ],
-          secondaryActions: [
-          /*  if (model['status'] == 'archive')
-              itemAction(
-                  color: primaryColor,
+            Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              ),
+              child: itemAction(
+                 color: Colors.red,
                   context: context,
-                  icon: Icons.assignment_return,
+                  icon: Icons.delete,
                   function: () {
-                    return TaskCubit.get(context).updateStatusTask(
-                        status: 'new', id: model['id'], context: context);
+                    return TaskCubit.get(context)
+                        .deleteTask(id: model['id'], context: context);
                   }),
-            if (model['status'] == 'new')
-              itemAction(
-                  color: primaryColor,
-                  context: context,
-                  icon: Icons.archive,
-                  function: () {
-                    return TaskCubit.get(context).updateStatusTask(
-                        status: 'archive', id: model['id'], context: context);
-                  }),*/
+            ),
           ],
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
             ),
             width: double.infinity,
@@ -186,7 +190,7 @@ Widget taskItem(context, Map model) {
                           overflow: TextOverflow.ellipsis,
                           style: model['status'] == 'new' ||
                                   model['status'] == 'archive'
-                              ? Theme.of(context).textTheme.bodyText1
+                              ? Theme.of(context).textTheme.headline6
                               : Theme.of(context).textTheme.headline2),
                       const SizedBox(height: 5.0),
                       Row(
@@ -197,7 +201,7 @@ Widget taskItem(context, Map model) {
                           if (date == DateFormat.yMMMd().format(DateTime.now()))
                             const Text(
                               'اليوم',
-                              style: TextStyle(color: primaryColor),
+                              style: TextStyle(color: primaryColor,fontSize: 12),
                             )
                         ],
                       ),
@@ -221,7 +225,7 @@ Widget taskBuilder({
       condition: tasks.isNotEmpty,
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) {
@@ -240,7 +244,7 @@ Widget taskBuilder({
         if (page == 1) message = "لا يوجد مهام مكتملة";
         if (page == 2) message = "لا يوجد مهام مؤرشفة";
         return Center(
-          child: Text(message, style: Theme.of(context).textTheme.bodyText1),
+          child: Text(message, style: Theme.of(context).textTheme.headline6),
         );
       });
 }
@@ -317,12 +321,12 @@ Widget noteItem(context, Map model) {
                         Text('${model['title']}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.bodyText1),
+                            style: Theme.of(context).textTheme.headline6),
                         const SizedBox(height: 4.0),
                         Text('${model['description']}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.headline6),
+                            style: Theme.of(context).textTheme.subtitle1),
                         const SizedBox(height: 4.0),
                         Text(' تاريخ الإضافة ${model['date']}',
                             style: Theme.of(context).textTheme.subtitle1),
@@ -347,7 +351,7 @@ Widget noteBuilder({
       condition: notes.isNotEmpty,
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) {

@@ -54,26 +54,27 @@ class NoteDetails extends StatelessWidget {
 
               ]),
               body: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(16.0),
                 child:  Directionality(
                   textDirection: ui.TextDirection.rtl,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(model['title'],
-                          style: Theme.of(context).textTheme.headline5),
-                      const SizedBox(height: 10.0),
-                      Text(
-                        model['description'],
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                      const Spacer(),
-                      Text(' تاريخ الإضافة : ' + model['date'],
-                          style: Theme.of(context).textTheme.subtitle1),
-                    ],
-                  ),
+                        Text(model['title'],
+                            style: Theme.of(context).textTheme.headline5),
+                        const SizedBox(height: 10.0),
+                        Text(
+                          model['description'],
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                        const Spacer(),
+                        Text(' تاريخ الإضافة : ' + model['date'],
+                            style: Theme.of(context).textTheme.subtitle1),
+                      ],
+                    ),
                 ),
-              ));
+                ),
+              );
         },
       );
     });

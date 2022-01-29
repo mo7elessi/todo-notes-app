@@ -19,22 +19,22 @@ class HomeLayout extends StatelessWidget {
             body: cubit.buildScreens[cubit.currentIndex],
             floatingActionButton: SpeedDial(
               icon: Icons.add,
-              iconTheme: IconThemeData(
+              iconTheme: const IconThemeData(
                 color: Colors.white
               ),
               activeIcon: Icons.close,
               curve: Curves.bounceIn,
               overlayOpacity: 0.0,
-              shape: CircleBorder(),
+              shape: const CircleBorder(),
               spaceBetweenChildren: 10.0,
               children: [
                 SpeedDialChild(
-                  child: Icon(
+                  child: const Icon(
                     Icons.notes,
                   ),
                   labelWidget: Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Text('مهمة',style: Theme.of(context).textTheme.subtitle2),
+                    child: Text('مهمة',style: Theme.of(context).textTheme.bodyText1),
                   ),
                   labelBackgroundColor: primaryColor,
                   onTap: () {
@@ -46,12 +46,12 @@ class HomeLayout extends StatelessWidget {
                   },
                 ),
                 SpeedDialChild(
-                    child: Icon(
+                    child: const Icon(
                       Icons.event_note,
                     ),
                     labelWidget: Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: Text('ملاحظة',style: Theme.of(context).textTheme.subtitle2),
+                      child: Text('ملاحظة',style: Theme.of(context).textTheme.bodyText1),
                     ),
                     onTap: () {
                       Navigator.push(

@@ -147,7 +147,7 @@ class AddEditTaskOrNote extends StatelessWidget {
                           hintText:
                               numPage == 0 ? "عنوان المهمة" : "عنوان الملاحظة",
                           suffixIcon: Icons.title),
-                      const SizedBox(height: 12.0),
+                      const SizedBox(height: 8.0),
                       if (numPage == 0)
                         Column(
                           children: [
@@ -161,15 +161,15 @@ class AddEditTaskOrNote extends StatelessWidget {
                                     context: context,
                                     initialDate: DateTime.now(),
                                     firstDate: DateTime.now(),
-                                    lastDate: DateTime.parse('2022-01-01'),
+                                    lastDate: DateTime.parse('2023-01-01'),
                                   ).then((value) {
                                     dateController.text  = DateFormat().add_yMMMd().format(value!);
                                   });
                                 },
                                 hintText: 'تاريخ المهمة',
                                 suffixIcon: Icons.date_range),
-                            SizedBox(
-                              height: 12,
+                            const SizedBox(
+                              height: 8,
                             ),
                             textField(
                                 validator: () {},
@@ -193,13 +193,12 @@ class AddEditTaskOrNote extends StatelessWidget {
                                 suffixIcon: Icons.watch_later),
                           ],
                         ),
-                      const SizedBox(height: 12.0),
+                      const SizedBox(height:8.0),
                    /*   Container(
                         width: double.infinity,
                           child: Text('مزيد من التفاصيل',style: Theme.of(context).textTheme.headline3,)),
                       const SizedBox(height: 6.0),*/
-                      textField(
-                          min: 1,
+                      textFieldNoIcon(
                           max: 100,
                           onTap: () {},
                           description: true,
@@ -207,8 +206,7 @@ class AddEditTaskOrNote extends StatelessWidget {
                           controller: detailsController,
                           keyboard: TextInputType.multiline,
                           validator: () {},
-                          hintText: "مزيد من التفاصيل (اختياري)",
-                          suffixIcon: Icons.filter_list_sharp),
+                          hintText: "مزيد من التفاصيل (اختياري)",),
                     ],
                   ),
                 ),

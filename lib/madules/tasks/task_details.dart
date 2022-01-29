@@ -2,6 +2,8 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/madules/add_edit/add_edit.dart';
+import 'package:todo_app/madules/tasks/new_task.dart';
+import 'package:todo_app/model/task_model.dart';
 import 'dart:ui' as ui;
 import 'package:todo_app/shared/components/components.dart';
 import 'package:todo_app/shared/cubit/cubit.dart';
@@ -20,7 +22,7 @@ class TaskDetails extends StatelessWidget {
         listener: (BuildContext context, TaskStates state) {
           if (state is TaskDeleteState ||
               state is TaskUpdateStatusState) {
-            Navigator.pop(context);
+          Navigator.pop(context);
           }
         }, builder: (BuildContext context, TaskStates state) {
       if (model['status'] == 'new') {
@@ -89,7 +91,7 @@ class TaskDetails extends StatelessWidget {
                 ),
               ]),
               body: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Directionality(
                   textDirection: ui.TextDirection.rtl,
                   child: Column(
@@ -140,9 +142,9 @@ class TaskDetails extends StatelessWidget {
                       ),
                       const Spacer(),
                       Container(
-                        color: Colors.teal.shade50,
-                        child: Center(
+                        color: Colors.teal.shade50, child: Center(
                           child: button(
+
                             done: model['status'] == 'done' ? true : false,
                             function: () {
                               if (model['status'] == 'new') {

@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75b46716-42dc-48ac-bc72-9395f28d6ce4" name="Default Changelist" comment="" />
+    <list default="true" id="75b46716-42dc-48ac-bc72-9395f28d6ce4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/7f6b5835db4562dc63c673c8aa0f3cd1/_composite.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/7f6b5835db4562dc63c673c8aa0f3cd1/gen_dart_plugin_registrant.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/7f6b5835db4562dc63c673c8aa0f3cd1/gen_localizations.stamp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/HVfKmqRuOJ+Vg_03CHB6QlGCQT8=" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/layout/home_layout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/layout/home_layout.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/add_edit/add_edit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/add_edit/add_edit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/notes/note_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/notes/note_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/notes/notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/notes/notes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/tasks/task_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/tasks/task_details.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/tasks/tasks.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/tasks/tasks.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/components/components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/components/components.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/cubit/cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/cubit/cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/styles/themes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/styles/themes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[20598eb30409]" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="20YPVsTqAsUR5DDIIO6HX0KtXVZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,7 +57,7 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/fonts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -35,7 +69,7 @@
       <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\assets\fonts" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -48,23 +82,5 @@
       <updated>1636218574378</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state width="1306" height="473" key="GridCell.Tab.0.bottom" timestamp="1637516174179">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1306" height="473" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1637516174179" />
-    <state width="1306" height="473" key="GridCell.Tab.0.center" timestamp="1637516174178">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1306" height="473" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1637516174178" />
-    <state width="1306" height="473" key="GridCell.Tab.0.left" timestamp="1637516174178">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1306" height="473" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1637516174178" />
-    <state width="1306" height="473" key="GridCell.Tab.0.right" timestamp="1637516174179">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1306" height="473" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1637516174179" />
   </component>
 </project>

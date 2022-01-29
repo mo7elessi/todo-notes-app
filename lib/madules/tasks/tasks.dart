@@ -24,7 +24,7 @@ class Tasks extends StatelessWidget {
               ),
               title: Text(
                 'مهامي اليومية',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.headline4,
               ),
               actions: [
                 IconButton(
@@ -39,7 +39,7 @@ class Tasks extends StatelessWidget {
             ),
             body: TabBarView(
               children: TaskCubit.get(context).screens,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
             ),
           ),
         );

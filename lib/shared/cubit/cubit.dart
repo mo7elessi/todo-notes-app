@@ -27,8 +27,8 @@ class TaskCubit extends Cubit<TaskStates> {
   List<Widget> buildScreens = [Tasks(), Notes()];
   List<String> appBarTitle = ['مهامي اليومية', 'ملاحظاتي'];
   List<BottomNavigationBarItem> navBarsItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.notes_sharp), title: Text('')),
-    BottomNavigationBarItem(icon: Icon(Icons.event_note), title: Text('')),
+    const BottomNavigationBarItem(icon: Icon(Icons.notes_sharp), label:''),
+    const BottomNavigationBarItem(icon: Icon(Icons.event_note), label:''),
   ];
 
   void onClickItemNav(int index) {
@@ -240,6 +240,7 @@ class TaskCubit extends Cubit<TaskStates> {
     ).then((value) {
       toastMessage(
           message: 'تم التعديل', color: primaryColor, context: context);
+
       getDataFromDatabase(database);
       emit(TaskEditState());
     });

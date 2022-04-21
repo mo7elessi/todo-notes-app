@@ -11,6 +11,7 @@ import 'package:todo_app/madules/tasks/tasks.dart';
 import 'package:todo_app/shared/components/components.dart';
 import 'package:todo_app/shared/cubit/states.dart';
 import 'package:todo_app/shared/local/cache_helper.dart';
+import 'package:todo_app/shared/services/notification_services.dart';
 import 'package:todo_app/shared/styles/colors.dart';
 
 class TaskCubit extends Cubit<TaskStates> {
@@ -18,7 +19,11 @@ class TaskCubit extends Cubit<TaskStates> {
 
   static TaskCubit get(context) => BlocProvider.of(context);
 
-  List<Widget> tabs = const [Text('المهام'), Text('المؤجلة'), Text('المنتهية')];
+  List<Widget> tabs = const [
+    Text('المهام'),
+    Text('المؤجلة'),
+    Text('المنتهية'),
+  ];
 
   List<Widget> screens = const [NewTask(), ArchiveTask(), DoneTask()];
 
@@ -27,8 +32,8 @@ class TaskCubit extends Cubit<TaskStates> {
   List<Widget> buildScreens = [Tasks(), Notes()];
   List<String> appBarTitle = ['مهامي اليومية', 'ملاحظاتي'];
   List<BottomNavigationBarItem> navBarsItems = [
-    const BottomNavigationBarItem(icon: Icon(Icons.notes_sharp), label:''),
-    const BottomNavigationBarItem(icon: Icon(Icons.event_note), label:''),
+    const BottomNavigationBarItem(icon: Icon(Icons.notes_sharp), label: ''),
+    const BottomNavigationBarItem(icon: Icon(Icons.note), label: ''),
   ];
 
   void onClickItemNav(int index) {
@@ -46,6 +51,7 @@ class TaskCubit extends Cubit<TaskStates> {
   List<Map> notes = [];
 
   String btnMessage = '';
+  Map taskModel = {};
 
   void createDatabase() {
     openDatabase(
@@ -119,7 +125,7 @@ class TaskCubit extends Cubit<TaskStates> {
         toastMessage(
             message: 'تم الإضافة', color: primaryColor, context: context);
         getNoteFromDatabase(database);
-          }).catchError((error) {
+      }).catchError((error) {
         print('Error When Inserting New Record ${error.toString()}');
       });
     });
@@ -149,7 +155,7 @@ class TaskCubit extends Cubit<TaskStates> {
   }
 
   void getNoteFromDatabase(database) {
-    notes =[];
+    notes = [];
     database.rawQuery('SELECT * FROM notes ORDER BY id ASC').then((value) {
       value.forEach((element) {
         notes.add(element);
@@ -186,6 +192,8 @@ class TaskCubit extends Cubit<TaskStates> {
     database!.rawDelete('DELETE FROM tasks WHERE id = ?', [id]).then((value) {
       toastMessage(message: 'تم الحذف', color: Colors.red, context: context);
       getDataFromDatabase(database);
+      NotifyHelper().cancelSendNotification(id: id);
+
       emit(TaskDeleteState());
     });
   }

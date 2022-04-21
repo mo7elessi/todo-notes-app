@@ -5,45 +5,70 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75b46716-42dc-48ac-bc72-9395f28d6ce4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/app_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/PNU.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/services/notification_services.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/7f6b5835db4562dc63c673c8aa0f3cd1/_composite.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/7f6b5835db4562dc63c673c8aa0f3cd1/gen_dart_plugin_registrant.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/7f6b5835db4562dc63c673c8aa0f3cd1/gen_localizations.stamp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/debug-mergeJavaRes/zip-cache/HVfKmqRuOJ+Vg_03CHB6QlGCQT8=" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/Cairo_Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/fonts/Cairo.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/layout/home_layout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/layout/home_layout.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/add_edit/add_edit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/add_edit/add_edit.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/notes/note_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/notes/note_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/madules/notes/notes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/notes/notes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/settings/settings.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/madules/tasks/notifications.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/tasks/task_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/tasks/task_details.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/tasks/tasks.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/tasks/tasks.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/task_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/task_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/components/components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/components/components.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/cubit/cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/cubit/cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/styles/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/styles/colors.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/styles/themes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/styles/themes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[20598eb30409]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="20YPVsTqAsUR5DDIIO6HX0KtXVZ" />
   <component name="ProjectViewState">
@@ -57,15 +82,19 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app/src/main/res/drawable" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\Flutter Projects\todo_app\android\app\src\main\res\drawable" />
+      <recent name="C:\Users\hp\Desktop\Flutter Projects\todo_app\android\app\src\main\res" />
+      <recent name="C:\Users\hp\Desktop\Flutter Projects\todo_app\assets\fonts" />
       <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\assets\fonts" />
       <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\hp\Desktop\Flutter Projects\todo_app\lib\madules" />
       <recent name="C:\Users\HP\AppData\Local\Temp\AndroidProjects\todo_app\assets\fonts" />
     </key>
   </component>

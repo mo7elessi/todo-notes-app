@@ -11,6 +11,7 @@ import 'package:todo_app/madules/notes/note_details.dart';
 import 'package:todo_app/madules/tasks/task_details.dart';
 import 'package:todo_app/shared/cubit/cubit.dart';
 import 'package:todo_app/shared/styles/colors.dart';
+import '../services/notification_services.dart';
 
 Widget textField(
     {required TextEditingController controller,
@@ -18,91 +19,96 @@ Widget textField(
     required Function validator,
     required String hintText,
     bool isClick = true,
-    IconData? suffixIcon,
+    IconData? prefixIcon,
     required context,
     required Function onTap,
     Function? onSubmit,
-    int min = 1,
-    int max = 1,
     bool? description = false}) {
   return SizedBox(
-    height: description == true ? 300.0 : 50.0,
-    width: 600.0,
     child: TextFormField(
-      maxLines: max,
-      minLines: min,
       controller: controller,
+      textInputAction: TextInputAction.newline,
+    //  expands: true,
       keyboardType: keyboard,
       style: Theme.of(context).textTheme.headline6,
       textAlignVertical: TextAlignVertical.top,
       cursorColor: primaryColor,
-      decoration:InputDecoration(
-          icon: Icon(
-          suffixIcon,
-          color:primaryColor,
-        ),
+      decoration: InputDecoration(
+          prefixIcon: Icon(
+            prefixIcon,
+            color: primaryColor,
+          ),
           hintText: hintText,
-      ),
+          hintStyle: const TextStyle(color: Colors.grey, fontSize: 12)),
       onTap: () => onTap(),
     ),
   );
 }
-Widget textFieldNoIcon(
-    {required TextEditingController controller,
-      required TextInputType keyboard,
-      required Function validator,
-      required String hintText,
-      bool isClick = true,
-      IconData? suffixIcon,
-      required context,
-      required Function onTap,
-      Function? onSubmit,
-      int min = 1,
-      int max = 1,
-      bool? description = false}) {
-  return SizedBox(
-    height: 1000,
-    width: 600.0,
-    child: TextFormField(
-      maxLines: max,
-      minLines: min,
-      controller: controller,
-      keyboardType: keyboard,
-      style: Theme.of(context).textTheme.bodyText1,
-      textAlignVertical: TextAlignVertical.top,
-      cursorColor: primaryColor,
-      decoration:InputDecoration(
-        hintText: hintText,
-      ),
-      onTap: () => onTap(),
-    ),
-  );
-}
+
 Widget button({
   bool isUppercase = true,
   double radius = 5.0,
   required Function function,
   required String text,
   required bool done,
+  Color color = primaryColor,
 }) {
-  return Container(
-    width: double.infinity,
+  return SizedBox(
     child: TextButton(
       onPressed: () => function(),
       child: Text(isUppercase ? text.toUpperCase() : text,
-          style: const TextStyle(
-              color: primaryColor,
+          style: TextStyle(
+              color: color,
               fontSize: 14.0,
-              fontFamily: 'Cairo',
+              fontFamily: 'PNU',
               fontWeight: FontWeight.bold)),
     ),
   );
 }
 
 Widget taskItem(context, Map model) {
+  //date
   String date = model['date'];
-  return  GestureDetector(
+  String year = date.split("/")[0];
+  String month = date.split("/")[1];
+  String day = date.split("/")[2];
+
+  //hour
+  String time = model['time'].split(" ")[0];
+  String isPM = model['time'].split(" ")[1];
+  String hour = time.split(":")[0];
+  String minute = time.split(":")[1];
+  int value = isPM == "PM"?12:0;
+  NotifyHelper().scheduledNotification(
+      int.parse(year),
+      int.parse(month),
+      int.parse(day),
+      int.parse(hour)+value,
+      int.parse(minute), {
+    "title": model['title'],
+    "id": model['id'],
+  });
+
+  return Slidable(
+    actionPane: const SlidableDrawerActionPane(),
+    actions: [
+      Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        ),
+        child: itemAction(
+            color: Colors.red,
+            context: context,
+            icon: Icons.delete,
+            function: () {
+              return TaskCubit.get(context)
+                  .deleteTask(id: model['id'], context: context);
+            }),
+      ),
+    ],
+    child: GestureDetector(
       onTap: () {
+        TaskCubit.get(context).taskModel = model;
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -111,110 +117,94 @@ Widget taskItem(context, Map model) {
       },
       child: Card(
         elevation: 0.5,
-        child: Slidable(
-          actionPane: const SlidableDrawerActionPane(),
-          actions: [
-            Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
+          width: double.infinity,
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              model['status'] == 'new' || model['status'] == 'archive'
+                  ? RoundCheckBox(
+                      size: 32,
+                      checkedColor: primaryColor,
+                      borderColor: secondaryColor,
+                      isChecked: model['status'] == "done" ? true : false,
+                      animationDuration: const Duration(
+                        microseconds: 3000,
+                      ),
+                      onTap: (selected) {
+                        if (model['status'] == "done") {
+                          return false;
+                        } else {
+                          Timer(const Duration(milliseconds: 100), () {
+                            if (model['status'] == 'new') {
+                              TaskCubit.get(context).updateStatusTask(
+                                  status: 'done',
+                                  id: model['id'],
+                                  context: context);
+                            }
+                            if (model['status'] == 'archive') {
+                              TaskCubit.get(context).updateStatusTask(
+                                  status: 'done',
+                                  id: model['id'],
+                                  context: context);
+                            }
+                            if (model['status'] == 'done') {
+                              TaskCubit.get(context).updateStatusTask(
+                                  status: 'new',
+                                  id: model['id'],
+                                  context: context);
+                            }
+                          });
+                        }
+                      })
+                  : const Icon(
+                      Icons.check,
+                      color: primaryColor,
+                    ),
+              const SizedBox(
+                width: 20.0,
               ),
-              child: itemAction(
-                 color: Colors.red,
-                  context: context,
-                  icon: Icons.delete,
-                  function: () {
-                    return TaskCubit.get(context)
-                        .deleteTask(id: model['id'], context: context);
-                  }),
-            ),
-          ],
-          child: Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
-            width: double.infinity,
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                model['status'] == 'new' || model['status'] == 'archive'
-                    ? RoundCheckBox(
-                  size: 32,
-                        checkedColor: primaryColor,
-                        borderColor: secondaryColor,
-                        isChecked: model['status'] == "done" ? true : false,
-                        animationDuration: const Duration(
-                          microseconds: 3000,
-                        ),
-                        onTap: (selected) {
-                          if (model['status'] == "done") {
-                            return false;
-                          } else {
-                            Timer(const Duration(milliseconds: 100), () {
-                              if (model['status'] == 'new') {
-                                TaskCubit.get(context).updateStatusTask(
-                                    status: 'done',
-                                    id: model['id'],
-                                    context: context);
-                              }
-                              if (model['status'] == 'archive') {
-                                TaskCubit.get(context).updateStatusTask(
-                                    status: 'done',
-                                    id: model['id'],
-                                    context: context);
-                              }
-                              if (model['status'] == 'done') {
-                                TaskCubit.get(context).updateStatusTask(
-                                    status: 'new',
-                                    id: model['id'],
-                                    context: context);
-                              }
-                            });
-                          }
-                        })
-                    : const Icon(
-                        Icons.check,
-                        color: primaryColor,
-                      ),
-                const SizedBox(
-                  width: 20.0,
-                ),
-                SizedBox(
-                  width: 280.0,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${model['title']}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: model['status'] == 'new' ||
-                                  model['status'] == 'archive'
-                              ? Theme.of(context).textTheme.headline6
-                              : Theme.of(context).textTheme.headline2),
-                      const SizedBox(height: 5.0),
-                      Row(
-                        children: [
-                          Text('$date, ${model['time']}',
-                              style: Theme.of(context).textTheme.subtitle1),
-                          const Spacer(),
-                          if (date == DateFormat.yMMMd().format(DateTime.now()))
-                            const Text(
-                              'اليوم',
-                              style: TextStyle(color: primaryColor,fontSize: 12),
-                            )
-                        ],
-                      ),
+              SizedBox(
+                width: 280.0,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
 
-                    ],
-                  ),
+                    Text('${model['title']}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: model['status'] == 'new' ||
+                                model['status'] == 'archive'
+                            ? Theme.of(context).textTheme.headline6
+                            : Theme.of(context).textTheme.headline2),
+                    const SizedBox(height: 12.0),
+
+                    Row(
+                      children: [
+                        Text('${model['date']} - in ${model['time']}',
+                            style: Theme.of(context).textTheme.subtitle1),
+                        const Spacer(),
+                        if (model['date'] == DateFormat.yMd().format(DateTime.now()))
+                          const Text(
+                            'اليوم',
+                            style: TextStyle(color: primaryColor, fontSize: 10),
+                          )
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
-    );
+    ),
+  );
 }
 
 Widget taskBuilder({
@@ -232,8 +222,8 @@ Widget taskBuilder({
               return taskItem(context, tasks[index]);
             },
             separatorBuilder: (context, index) => const SizedBox(
-            //  height: 5.0,
-            ),
+                //  height: 5.0,
+                ),
             itemCount: tasks.length,
           ),
         );
@@ -242,16 +232,15 @@ Widget taskBuilder({
         String message = "";
         if (page == 0) message = "لا يوجد مهام جديدة";
         if (page == 1) message = "لا يوجد مهام مكتملة";
-        if (page == 2) message = "لا يوجد مهام مؤرشفة";
+        if (page == 2) message = "لا يوجد مهام مؤجلة";
         return Center(
-          child: Text(message, style: Theme.of(context).textTheme.headline6),
+          child: Text(message, style: Theme.of(context).textTheme.bodyText1),
         );
       });
 }
 
 void toastMessage(
     {required String message, required Color color, required context}) {
-
   Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
@@ -263,44 +252,44 @@ void toastMessage(
 }
 
 Widget noteItem(context, Map model) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => NoteDetails(model)));
-    },
-    child: Card(
-      elevation: 0.5,
-      child: Slidable(
-        actionPane: const SlidableDrawerActionPane(),
-        actions: [
-          Column(
-            children: [
-              Expanded(
-                child: itemAction(
-                    color: primaryColor,
-                    context: context,
-                    icon: Icons.edit,
-                    function: () {
-                      return Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return AddEditTaskOrNote(1, 'edit', model: model);
-                        },
-                      ));
-                    }),
-              ),
-              Expanded(
-                child: itemAction(
-                    color: Colors.red,
-                    context: context,
-                    icon: Icons.delete,
-                    function: () {
-                      return TaskCubit.get(context)
-                          .deleteNote(id: model['id'], context: context);
-                    }),
-              ),
-            ],
+  return Slidable(
+    actionPane: const SlidableDrawerActionPane(),
+    actions: [
+      Column(
+        children: [
+          Expanded(
+            child: itemAction(
+                color: primaryColor,
+                context: context,
+                icon: Icons.edit,
+                function: () {
+                  return Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return AddEditTaskOrNote(1, 'edit', model:model);
+                    },
+                  ));
+                }),
+          ),
+          Expanded(
+            child: itemAction(
+                color: Colors.red,
+                context: context,
+                icon: Icons.delete,
+                function: () {
+                  return TaskCubit.get(context)
+                      .deleteNote(id: model['id'], context: context);
+                }),
           ),
         ],
+      ),
+    ],
+    child: GestureDetector(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => NoteDetails(model)));
+      },
+      child: Card(
+        elevation: 0.5,
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -324,9 +313,9 @@ Widget noteItem(context, Map model) {
                             style: Theme.of(context).textTheme.headline6),
                         const SizedBox(height: 4.0),
                         Text('${model['description']}',
-                            maxLines: 1,
+                            maxLines: 3,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.subtitle1),
+                            style: Theme.of(context).textTheme.subtitle2),
                         const SizedBox(height: 4.0),
                         Text(' تاريخ الإضافة ${model['date']}',
                             style: Theme.of(context).textTheme.subtitle1),
@@ -358,8 +347,8 @@ Widget noteBuilder({
               return noteItem(context, notes[index]);
             },
             separatorBuilder: (context, index) => const SizedBox(
-             // height: 5.0,
-            ),
+                // height: 5.0,
+                ),
             itemCount: notes.length,
           ),
         );
@@ -377,8 +366,15 @@ Widget itemAction(
     required color,
     required IconData icon,
     required Function function}) {
-  return IconSlideAction(
-    color: color,
-      iconWidget: Icon(icon, size: 28.0, color: Colors.white),
-      onTap: () => function());
+  return InkWell(
+    onTap: () => function(),
+    child: Container(
+      margin: const EdgeInsets.all(5),
+      height: double.infinity,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: color, borderRadius: BorderRadiusDirectional.circular(4)),
+      child: Icon(icon, size: 28.0, color: Colors.white),
+    ),
+  );
 }

@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'colors.dart';
-
+OutlineInputBorder outlineInputBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.circular(0.0),
+  borderSide: const BorderSide(width: 0.3, color: Color(0xffcbcbcb)),
+);
 ThemeData themeLight = ThemeData(
-  fontFamily: 'Cairo',
+  fontFamily: 'PNU',
   backgroundColor: Colors.white,
   primaryColor: const Color(0xFF079992),
   cursorColor: primaryColor,
@@ -24,12 +27,13 @@ ThemeData themeLight = ThemeData(
       hoverColor: primaryColor,
     ),
   ),
-  inputDecorationTheme: const InputDecorationTheme(
+  inputDecorationTheme:  InputDecorationTheme(
     hoverColor: primaryColor,
     focusColor: primaryColor,
-    enabledBorder: InputBorder.none,
-    disabledBorder: InputBorder.none,
-    focusedBorder: InputBorder.none,
+    enabledBorder: outlineInputBorder,
+    errorBorder: outlineInputBorder,
+    focusedErrorBorder: outlineInputBorder,
+    focusedBorder: outlineInputBorder,
     prefixStyle: TextStyle(
       color: primaryColor,
     ),
@@ -61,26 +65,28 @@ ThemeData themeLight = ThemeData(
     backgroundColor: primaryColor,
     elevation: 8.0,
   ),
+  cardTheme: const CardTheme(color: cardLight, elevation: 0.0),
   textTheme: const TextTheme(
     bodyText1: TextStyle(
         fontSize: 12.0, color: Colors.black54, fontWeight: FontWeight.bold),
-    subtitle1: TextStyle(fontSize: 12.0),
-    subtitle2: TextStyle(fontSize: 14.0, color: detColor),
-    headline5: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.black87),
-    headline6: TextStyle(
-        fontSize: 12.5, color: Color(0xff2f2c2c), fontWeight: FontWeight.bold),
+    subtitle1: TextStyle(fontSize: 10.0),
+    subtitle2: TextStyle(fontSize: 12.0),
     headline1: TextStyle(
-        fontSize: 14.5, color: Color(0xffffffff), fontWeight: FontWeight.bold),
-    headline4: TextStyle(
-        fontSize: 15, color: Color(0xffffffff), fontWeight: FontWeight.bold),
-    bodyText2: TextStyle(
-        fontSize: 14.0, color: backgroundColor, fontWeight: FontWeight.bold),
+        fontSize: 14.0, color: Color(0xffffffff), fontWeight: FontWeight.bold),
     headline2: TextStyle(
         decoration: TextDecoration.lineThrough,
-        fontSize: 14.0,
-        color: titleColor,
+        fontSize: 12.0,
+        color: Colors.black54,
         fontWeight: FontWeight.bold),
     headline3: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold),
+    headline5: TextStyle(
+        fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black87),
+    headline6: TextStyle(
+        fontSize:  12.0, color: titleColor, fontWeight: FontWeight.bold),
+    headline4: TextStyle(
+        fontSize: 14.0, color: Color(0xffffffff), fontWeight: FontWeight.bold),
+    bodyText2: TextStyle(
+        fontSize: 14.0, color: backgroundColor, fontWeight: FontWeight.bold),
   ),
   iconTheme: const IconThemeData(
     color: primaryColor,
@@ -88,7 +94,7 @@ ThemeData themeLight = ThemeData(
 );
 
 ThemeData themeDark = ThemeData(
-  fontFamily: 'Cairo',
+  fontFamily: 'PNU',
   primaryColor: const Color(0xFF212121),
   splashColor: primaryColorDark,
   inputDecorationTheme: const InputDecorationTheme(
@@ -117,7 +123,9 @@ ThemeData themeDark = ThemeData(
             MaterialStateProperty.all(const TextStyle(color: Colors.white))),
   ),
   cardTheme: const CardTheme(
-    color: CardDark,
+    color: cardDark,
+      elevation: 0.0
+
   ),
   focusColor: primaryColorDark,
   scaffoldBackgroundColor: seconderColorDark,
@@ -138,23 +146,25 @@ ThemeData themeDark = ThemeData(
   textTheme: const TextTheme(
     bodyText1: TextStyle(
         fontSize: 12.0, color: Colors.white, fontWeight: FontWeight.bold),
-    subtitle1: TextStyle(fontSize: 12.0,color: Colors.white),
-    subtitle2: TextStyle(fontSize: 14.0, color: Colors.white),
-    headline5: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.white),
+    subtitle1: TextStyle(fontSize: 10.0, color: Colors.white),
+    subtitle2: TextStyle(fontSize: 12.0, color: Colors.white),
+    headline5: TextStyle(
+        fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.white),
     headline6: TextStyle(
-        fontSize: 12.5, color: Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 12.0, color: Colors.white, fontWeight: FontWeight.bold),
     headline1: TextStyle(
         fontSize: 14.5, color: Colors.white, fontWeight: FontWeight.bold),
     headline4: TextStyle(
-        fontSize: 15, color:Colors.white, fontWeight: FontWeight.bold),
+        fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold),
     bodyText2: TextStyle(
         fontSize: 14.0, color: Colors.white, fontWeight: FontWeight.bold),
     headline2: TextStyle(
         decoration: TextDecoration.lineThrough,
-        fontSize: 14.0,
+        fontSize: 12.0,
         color: Colors.white,
         fontWeight: FontWeight.bold),
-    headline3: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold,color: Colors.white),
+    headline3: TextStyle(
+        fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
   ),
   iconTheme: const IconThemeData(
     color: primaryColor,

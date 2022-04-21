@@ -6,38 +6,34 @@ import 'package:todo_app/shared/cubit/cubit.dart';
 import 'package:todo_app/shared/cubit/states.dart';
 import 'dart:ui' as ui;
 
+import '../../shared/styles/colors.dart';
+
 class AddEditTaskOrNote extends StatelessWidget {
   int numPage;
   String status;
   Map? model;
-
-  AddEditTaskOrNote(this.numPage, this.status, {this.model});
-
   var scaffoldKey = GlobalKey<ScaffoldState>();
   var formKey = GlobalKey<FormState>();
   var titleController = TextEditingController();
   var detailsController = TextEditingController();
   var timeController = TextEditingController();
   var dateController = TextEditingController();
+  late String time = model!["time"];
+
+  AddEditTaskOrNote(this.numPage, this.status, {Key? key, this.model})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<TaskCubit, TaskStates>(
-      listener: (BuildContext context, state) {
-        if (state is TaskInsertState) {
-          Navigator.pop(context);
-          titleController.text = '';
-          detailsController.text = '';
-          timeController.text = '';
-          dateController.text = '';
-        }
-        if (state is NoteInsertState) {
-          Navigator.pop(context);
-          titleController.text = '';
-          detailsController.text = '';
-        }
+      listener: (BuildContext context, TaskStates state) {
         if (state is NoteEditState ||
-            state is TaskEditState) {
+            state is TaskEditState ||
+            state is TaskInsertState ||
+            state is NoteInsertState) {
+          Navigator.pop(context);
+        }
+        if (state is NoteEditState || state is TaskEditState) {
           Navigator.pop(context);
         }
       },
@@ -49,7 +45,7 @@ class AddEditTaskOrNote extends StatelessWidget {
         if (model != null && numPage == 0) {
           titleController.text = model!['title'];
           detailsController.text = model!['description'];
-          dateController.text = model!['date'];
+          dateController.text =  model!['date'];
           timeController.text = model!['time'];
         }
         return Directionality(
@@ -80,7 +76,7 @@ class AddEditTaskOrNote extends StatelessWidget {
                         TaskCubit.get(context).insertTaskToDatabase(
                             title: titleController.text,
                             description: detailsController.text,
-                            time: timeController.text,
+                            time: time,
                             date: dateController.text,
                             context: context);
                       } else {
@@ -88,7 +84,7 @@ class AddEditTaskOrNote extends StatelessWidget {
                             title: titleController.text,
                             description: detailsController.text,
                             date: dateController.text =
-                                DateFormat.yMMMd().format(DateTime.now()),
+                                DateFormat.yMd().format(DateTime.now()),
                             context: context);
                       }
                     } else {
@@ -96,13 +92,13 @@ class AddEditTaskOrNote extends StatelessWidget {
                         TaskCubit.get(context).editTask(
                             title: titleController.text,
                             description: detailsController.text,
-                            time: timeController.text,
+                            time: time,
                             date: dateController.text,
                             context: context,
                             id: model!['id']);
                       } else {
                         TaskCubit.get(context).editNote(
-                            title: titleController.text,
+                            title: titleController.text.trim(),
                             description: detailsController.text,
                             id: model!['id'],
                             context: context);
@@ -110,11 +106,12 @@ class AddEditTaskOrNote extends StatelessWidget {
                     }
                   }
                 },
-                icon: Icon(Icons.check),
+                icon: const Icon(Icons.check),
               ),
               actions: [
                 IconButton(
-                  icon: Icon(Icons.arrow_forward_sharp, color: Colors.white),
+                  icon: const Icon(Icons.arrow_forward_sharp,
+                      color: Colors.white),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
@@ -137,6 +134,7 @@ class AddEditTaskOrNote extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       textField(
                           onTap: () {},
@@ -146,67 +144,84 @@ class AddEditTaskOrNote extends StatelessWidget {
                           validator: () {},
                           hintText:
                               numPage == 0 ? "عنوان المهمة" : "عنوان الملاحظة",
-                          suffixIcon: Icons.title),
+                          prefixIcon: Icons.title),
                       const SizedBox(height: 8.0),
                       if (numPage == 0)
-                        Column(
+                        Row(
                           children: [
-                            textField(
-                                validator: () {},
-                                context: context,
-                                controller: dateController,
-                                keyboard: TextInputType.datetime,
-                                onTap: () {
-                                  showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime.now(),
-                                    lastDate: DateTime.parse('2023-01-01'),
-                                  ).then((value) {
-                                    dateController.text  = DateFormat().add_yMMMd().format(value!);
-                                  });
-                                },
-                                hintText: 'تاريخ المهمة',
-                                suffixIcon: Icons.date_range),
-                            const SizedBox(
-                              height: 8,
+                            Expanded(
+                              flex: 1,
+                              child: textField(
+                                  validator: () {},
+                                  context: context,
+                                  controller: dateController,
+                                  keyboard: TextInputType.datetime,
+                                  onTap: () {
+                                    showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime.now(),
+                                      lastDate: DateTime.parse('2023-01-01'),
+                                    ).then((value) {
+                                      dateController.text = DateFormat()
+                                          .add_yMd()
+                                          .format(value!);
+                                    });
+                                  },
+                                  hintText: 'تاريخ المهمة',
+                                  prefixIcon: Icons.date_range),
                             ),
-                            textField(
-                                validator: () {},
-                                context: context,
-                                controller: timeController,
-                                keyboard: TextInputType.text,
-                                onTap: () {
-                                  showTimePicker(
-                                    initialEntryMode: TimePickerEntryMode.dial,
-                                    context: context,
-                                    initialTime: TimeOfDay.now(),
-                                  ).then((value) {
-                                    timeController.text =
-                                        value!.format(context);
-                                    //  00:00:00.0000000
-                                    print("Time >>> " + value.toString());
-                                  });
-                                },
-                                hintText:
-                                    /* TimeOfDay.now().format(context).toString()*/ 'وقت انجاز المهمة',
-                                suffixIcon: Icons.watch_later),
+                            const SizedBox(width: 8.0),
+                            Expanded(
+                              flex: 1,
+                              child: textField(
+                                  validator: () {},
+                                  context: context,
+                                  controller: timeController,
+                                  keyboard: TextInputType.text,
+                                  onTap: () {
+                                    showTimePicker(
+                                      initialEntryMode:
+                                          TimePickerEntryMode.dial,
+                                      context: context,
+                                      initialTime: TimeOfDay.now(),
+                                    ).then((value) {
+                                      timeController.text =
+                                          value!.format(context);
+                                      time = value.format(context).toString();
+                                    });
+                                  },
+                                  hintText: 'وقت  المهمة',
+                                  prefixIcon: Icons.watch_later),
+                            ),
                           ],
                         ),
-                      const SizedBox(height:8.0),
-                   /*   Container(
-                        width: double.infinity,
-                          child: Text('مزيد من التفاصيل',style: Theme.of(context).textTheme.headline3,)),
-                      const SizedBox(height: 6.0),*/
-                      textFieldNoIcon(
-                          max: 100,
-                          onTap: () {},
-                          description: true,
-                          context: context,
-                          controller: detailsController,
-                          keyboard: TextInputType.multiline,
-                          validator: () {},
-                          hintText: "مزيد من التفاصيل (اختياري)",),
+                      const SizedBox(height: 16.0),
+                      Row(
+                        children: const [
+                          Icon(Icons.details),
+                          SizedBox(width: 10),
+                          Text(
+                            "مزيد من التفاصيل",
+                            style: TextStyle(color: Colors.grey, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8.0),
+                      TextFormField(
+                        maxLines: 10,
+                        controller: detailsController,
+                        textInputAction: TextInputAction.newline,
+                        // expands: true,
+                        keyboardType: TextInputType.multiline,
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlignVertical: TextAlignVertical.top,
+                        cursorColor: primaryColor,
+                        decoration: const InputDecoration(
+                            hintText: "ادخل التفاصيل هنا",
+                            hintStyle:
+                                TextStyle(color: Colors.grey, fontSize: 10)),
+                      ),
                     ],
                   ),
                 ),

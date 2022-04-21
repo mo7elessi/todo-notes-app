@@ -19,9 +19,7 @@ class HomeLayout extends StatelessWidget {
             body: cubit.buildScreens[cubit.currentIndex],
             floatingActionButton: SpeedDial(
               icon: Icons.add,
-              iconTheme: const IconThemeData(
-                color: Colors.white
-              ),
+              iconTheme: const IconThemeData(color: Colors.white),
               activeIcon: Icons.close,
               curve: Curves.bounceIn,
               overlayOpacity: 0.0,
@@ -29,35 +27,35 @@ class HomeLayout extends StatelessWidget {
               spaceBetweenChildren: 10.0,
               children: [
                 SpeedDialChild(
-                  child: const Icon(
-                    Icons.notes,
-                  ),
-                  labelWidget: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text('مهمة',style: Theme.of(context).textTheme.bodyText1),
+                  child: const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Icon(
+                      Icons.notes_sharp,
+                      color: primaryColor,
+                    ),
                   ),
                   labelBackgroundColor: primaryColor,
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddEditTaskOrNote(0,'add'),
+                          builder: (context) => AddEditTaskOrNote(0, 'add'),
                         ));
                   },
                 ),
                 SpeedDialChild(
-                    child: const Icon(
-                      Icons.event_note,
-                    ),
-                    labelWidget: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text('ملاحظة',style: Theme.of(context).textTheme.bodyText1),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Icon(
+                        Icons.note_sharp,
+                        color: primaryColor,
+                      ),
                     ),
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AddEditTaskOrNote(1,'add'),
+                            builder: (context) => AddEditTaskOrNote(1, 'add'),
                           ));
                     }),
               ],

@@ -93,9 +93,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Cairo
+    - family: PNU
       fonts:
-        - asset: assets/fonts/Cairo_Light.ttf
+        - asset: assets/fonts/Cairo.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

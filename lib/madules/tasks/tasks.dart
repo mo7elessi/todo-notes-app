@@ -17,6 +17,11 @@ class Tasks extends StatelessWidget {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               bottom: TabBar(
+                labelStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "PNU",
+                  fontSize: 12,
+                ),
                 tabs: TaskCubit.get(context).tabs,
                 indicatorColor: Colors.white,
                 isScrollable: false,
@@ -29,7 +34,7 @@ class Tasks extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    TaskCubit.get(context).changeAppMode();
+                TaskCubit.get(context).changeAppMode();
                   },
                   icon: TaskCubit.get(context).isDark
                       ? const Icon(Icons.lightbulb_outline)

@@ -14,7 +14,7 @@ class Notes extends StatelessWidget {
 
       },
       builder: (context, TaskStates state) {
-        var notes = TaskCubit.get(context).notes;
+        var notes = TaskCubit.get(context).notes.reversed;
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -33,7 +33,7 @@ class Notes extends StatelessWidget {
               )
             ],
           ),
-          body: noteBuilder(notes: notes),
+          body: noteBuilder(notes: notes.toList()),
         );
       },
     );

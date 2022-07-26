@@ -162,6 +162,7 @@ class AddEditTaskOrNote extends StatelessWidget {
                                       initialDate: DateTime.now(),
                                       firstDate: DateTime.now(),
                                       lastDate: DateTime.parse('2023-01-01'),
+
                                     ).then((value) {
                                       dateController.text = DateFormat()
                                           .add_yMd()

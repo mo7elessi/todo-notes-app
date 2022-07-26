@@ -13,45 +13,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="75b46716-42dc-48ac-bc72-9395f28d6ce4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/drawable/app_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/fonts/PNU.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/services/notification_services.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/Cairo_Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/fonts/Cairo.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/AppDelegate.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/layout/home_layout.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/layout/home_layout.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/PNU.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/flutter_export_environment.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/add_edit/add_edit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/add_edit/add_edit.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/notes/note_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/notes/note_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/madules/settings/settings.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/madules/tasks/notifications.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/madules/tasks/task_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/tasks/task_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/madules/tasks/tasks.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/madules/tasks/tasks.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/task_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/task_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/components/components.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/components/components.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/cubit/cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/cubit/cubit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/styles/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/styles/colors.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/styles/themes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/styles/themes.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo_app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/todo_app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -79,6 +66,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />

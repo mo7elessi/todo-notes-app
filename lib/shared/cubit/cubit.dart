@@ -29,11 +29,12 @@ class TaskCubit extends Cubit<TaskStates> {
 
 //bottom navigation
   int currentIndex = 0;
-  List<Widget> buildScreens = [Tasks(), Notes()];
+  List<Widget> buildScreens = [const Tasks(), const Notes()];
   List<String> appBarTitle = ['مهامي اليومية', 'ملاحظاتي'];
   List<BottomNavigationBarItem> navBarsItems = [
-    const BottomNavigationBarItem(icon: Icon(Icons.notes_sharp), label: ''),
-    const BottomNavigationBarItem(icon: Icon(Icons.note), label: ''),
+    const BottomNavigationBarItem(
+        icon: Icon(Icons.notes_sharp), label: 'Tasks'),
+    const BottomNavigationBarItem(icon: Icon(Icons.note), label: 'Notes'),
   ];
 
   void onClickItemNav(int index) {
@@ -156,7 +157,7 @@ class TaskCubit extends Cubit<TaskStates> {
 
   void getNoteFromDatabase(database) {
     notes = [];
-    database.rawQuery('SELECT * FROM notes ORDER BY id ASC').then((value) {
+    database.rawQuery('SELECT * FROM notes').then((value) {
       value.forEach((element) {
         notes.add(element);
       });
@@ -174,6 +175,7 @@ class TaskCubit extends Cubit<TaskStates> {
       switch (status) {
         case 'done':
           message = "تم إكمال مهمة واحدة";
+          NotifyHelper().cancelSendNotification(id: id);
           break;
         case 'archive':
           message = "تمت الأرشفة";

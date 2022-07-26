@@ -19,6 +19,8 @@ void main() async {
   await CacheHelper.init();
 
   bool isDark = CacheHelper.getData(key: 'isDark');
+  NotifyHelper().requestIOSPermissions();
+  NotifyHelper().requestIOSPermissions();
   runApp(MyApp(isDark: isDark));
 }
 

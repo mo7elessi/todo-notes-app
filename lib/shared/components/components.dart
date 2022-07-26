@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -28,7 +28,7 @@ Widget textField(
     child: TextFormField(
       controller: controller,
       textInputAction: TextInputAction.newline,
-    //  expands: true,
+      //  expands: true,
       keyboardType: keyboard,
       style: Theme.of(context).textTheme.headline6,
       textAlignVertical: TextAlignVertical.top,
@@ -78,13 +78,9 @@ Widget taskItem(context, Map model) {
   String isPM = model['time'].split(" ")[1];
   String hour = time.split(":")[0];
   String minute = time.split(":")[1];
-  int value = isPM == "PM"?12:0;
-  NotifyHelper().scheduledNotification(
-      int.parse(year),
-      int.parse(month),
-      int.parse(day),
-      int.parse(hour)+value,
-      int.parse(minute), {
+  int value = isPM == "PM" ? 12 : 0;
+  NotifyHelper().scheduledNotification(int.parse(year), int.parse(month),
+      int.parse(day), int.parse(hour) + value, int.parse(minute), {
     "title": model['title'],
     "id": model['id'],
   });
@@ -174,7 +170,6 @@ Widget taskItem(context, Map model) {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     Text('${model['title']}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -183,13 +178,13 @@ Widget taskItem(context, Map model) {
                             ? Theme.of(context).textTheme.headline6
                             : Theme.of(context).textTheme.headline2),
                     const SizedBox(height: 12.0),
-
                     Row(
                       children: [
                         Text('${model['date']} - in ${model['time']}',
                             style: Theme.of(context).textTheme.subtitle1),
                         const Spacer(),
-                        if (model['date'] == DateFormat.yMd().format(DateTime.now()))
+                        if (model['date'] ==
+                            DateFormat.yMd().format(DateTime.now()))
                           const Text(
                             'اليوم',
                             style: TextStyle(color: primaryColor, fontSize: 10),
@@ -265,7 +260,7 @@ Widget noteItem(context, Map model) {
                 function: () {
                   return Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return AddEditTaskOrNote(1, 'edit', model:model);
+                      return AddEditTaskOrNote(1, 'edit', model: model);
                     },
                   ));
                 }),

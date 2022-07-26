@@ -1,4 +1,4 @@
-import 'package:conditional_builder/conditional_builder.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,34 +49,42 @@ class NoteDetails extends StatelessWidget {
                 color: Colors.white,
               ),
             ]),
-            body: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Directionality(
-                textDirection: ui.TextDirection.rtl,
-                child:  SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(model['title'],
-                          style: Theme.of(context).textTheme.headline5),
-                      const SizedBox(height: 10.0),
-                      Expanded(
-                        child: Text(
-                          model['description'],
-                          style: Theme.of(context).textTheme.headline6,
+            body: LayoutBuilder(builder: (context, constraint) {
+              return Directionality(
+                  textDirection: ui.TextDirection.rtl,
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ConstrainedBox(
+                        constraints:
+                            BoxConstraints(minHeight: constraint.maxHeight,maxWidth: constraint.maxWidth),
+                        child: IntrinsicHeight(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(model['title'],
+                                    style: Theme.of(context).textTheme.headline5),
+                                const SizedBox(height: 10.0),
+                                Expanded(
+                                  child: Text(
+                                    model['description'],
+                                    style: Theme.of(context).textTheme.headline6,
+                                  ),
+                                ),
+                                const SizedBox(height: 10.0),
+                                Text(' تاريخ الإضافة : ' + model['date'],
+                                    style: Theme.of(context).textTheme.subtitle1),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 10.0),
-                      Text(' تاريخ الإضافة : ' + model['date'],
-                          style: Theme.of(context).textTheme.subtitle1),
-                    ],
-                  ),
-                )
-              ),
-            ),
-
+                    ),
+                  ));
+            }),
           );
         },
       );

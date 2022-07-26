@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'colors.dart';
+
 OutlineInputBorder outlineInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(0.0),
   borderSide: const BorderSide(width: 0.3, color: Color(0xffcbcbcb)),
@@ -27,7 +28,7 @@ ThemeData themeLight = ThemeData(
       hoverColor: primaryColor,
     ),
   ),
-  inputDecorationTheme:  InputDecorationTheme(
+  inputDecorationTheme: InputDecorationTheme(
     hoverColor: primaryColor,
     focusColor: primaryColor,
     enabledBorder: outlineInputBorder,
@@ -40,8 +41,8 @@ ThemeData themeLight = ThemeData(
   ),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       elevation: 0.0,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
       selectedItemColor: primaryColor,
       selectedIconTheme: IconThemeData()),
   textButtonTheme: TextButtonThemeData(
@@ -82,7 +83,7 @@ ThemeData themeLight = ThemeData(
     headline5: TextStyle(
         fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black87),
     headline6: TextStyle(
-        fontSize:  12.0, color: titleColor, fontWeight: FontWeight.bold),
+        fontSize: 12.0, color: titleColor, fontWeight: FontWeight.bold),
     headline4: TextStyle(
         fontSize: 14.0, color: Color(0xffffffff), fontWeight: FontWeight.bold),
     bodyText2: TextStyle(
@@ -107,12 +108,26 @@ ThemeData themeDark = ThemeData(
       color: primaryColorDark,
     ),
   ),
+  timePickerTheme: const TimePickerThemeData(
+    dialBackgroundColor: Colors.black54,
+    backgroundColor: Color(0xFF262626),
+    dayPeriodBorderSide: BorderSide(color: Colors.black87),
+    hourMinuteTextStyle: TextStyle(fontSize: 28.0, color: Colors.white54),
+    entryModeIconColor: primaryColor,
+    helpTextStyle: TextStyle(color: primaryColor),
+    dayPeriodTextColor: Colors.white,
+    dialTextColor: Colors.white,
+    hourMinuteTextColor: Colors.white,
+    inputDecorationTheme: InputDecorationTheme(
+      hoverColor: primaryColor,
+    ),
+  ),
   backgroundColor: primaryColorDark,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: primaryColorDark,
       elevation: 0.0,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
       selectedItemColor: primaryColor,
       unselectedItemColor: Colors.white10,
       selectedIconTheme: IconThemeData()),
@@ -122,11 +137,7 @@ ThemeData themeDark = ThemeData(
         textStyle:
             MaterialStateProperty.all(const TextStyle(color: Colors.white))),
   ),
-  cardTheme: const CardTheme(
-    color: cardDark,
-      elevation: 0.0
-
-  ),
+  cardTheme: const CardTheme(color: cardDark, elevation: 0.0),
   focusColor: primaryColorDark,
   scaffoldBackgroundColor: seconderColorDark,
   appBarTheme: const AppBarTheme(
@@ -175,14 +186,4 @@ ThemeData themeDark = ThemeData(
   buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
   highlightColor: Colors.white,
   textSelectionColor: primaryColor,
-  timePickerTheme: const TimePickerThemeData(
-    dialBackgroundColor: Colors.white,
-    dayPeriodBorderSide: BorderSide(color: Colors.white),
-    hourMinuteTextStyle: TextStyle(fontSize: 28.0, color: Colors.black54),
-    entryModeIconColor: primaryColor,
-    helpTextStyle: TextStyle(color: primaryColor),
-    inputDecorationTheme: InputDecorationTheme(
-      hoverColor: primaryColor,
-    ),
-  ),
 );
